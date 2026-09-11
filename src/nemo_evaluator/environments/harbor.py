@@ -828,6 +828,10 @@ class HarborEnvironment(EvalEnvironment):
         return len(self._tasks)
 
     async def image_build_requests(self) -> list[Any] | None:
+        """Plan extra-layer Dockerfile builds for tasks without a declared image.
+
+        Return ``None`` when no task needs a Dockerfile build.
+        """
         from nemo_evaluator.sandbox.base import ImageBuildRequest, ImageSpec
 
         specs: list[ImageSpec] = []
